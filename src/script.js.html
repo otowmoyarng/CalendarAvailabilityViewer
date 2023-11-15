@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    function initialize() {
+        const setDate = (id, addDays) => {
+            const inputDate = document.getElementById(id);
+    
+            let date = new Date();
+            if (addDays > 0) {
+                date.setDate(date.getDate() + addDays);
+            }
+    
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            //console.debug(`id:${id}, formattedDate:${formattedDate}`);
+            inputDate.value = formattedDate;
+        };
+        // 日付項目に初期値をセット
+        // From：処理日
+        // To：処理日の６日後
+        setDate('datefrom', 0);
+        setDate('dateto', 6);
+    }
+    
+    function CopyToClipboard() {
+    
+        var copyTarget = document.getElementById("ProposedDatetime");
+        copyTarget.select();
+        document.execCommand("Copy");
+    
+        //console.debug("copied -> ", copyTarget.value);
+    }    
+</script>
