@@ -20,8 +20,13 @@
         // To：処理日の６日後
         setDate('datefrom', 0);
         setDate('dateto', 6);
+        initializeProposedDatetime();
     }
-    
+
+    function initializeProposedDatetime() {
+        console.debug('initializeProposedDatetime()!');
+    }
+
     function CopyToClipboard() {
     
         var copyTarget = document.getElementById("ProposedDatetime");

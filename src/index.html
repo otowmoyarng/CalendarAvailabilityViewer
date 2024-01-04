@@ -38,9 +38,9 @@
                                     <div class="col-md-9">
                                         <label for="DateRange" class="form-label">期間</label>
                                         <div class="input-group">
-                                            <input type="date" class="form-control" id="datefrom"  placeholder="From" aria-label="From" data-sb-validations="required">
+                                            <input type="date" class="form-control" id="datefrom"  placeholder="From" aria-label="From" data-sb-validations="required" onclick="initializeProposedDatetime()">
                                             <span class="input-group-text">～</span>
-                                            <input type="date" class="form-control" id="dateto"  placeholder="To" aria-label="To" data-sb-validations="required">
+                                            <input type="date" class="form-control" id="dateto"  placeholder="To" aria-label="To" data-sb-validations="required" onclick="initializeProposedDatetime()">
                                             <div class="invalid-feedback" data-sb-feedback="datefrom:required">From is required.</div>
                                             <div class="invalid-feedback" data-sb-feedback="dateto:required">To is required.</div>
                                         </div>
@@ -48,7 +48,7 @@
                                     <div class="col-md-3">
                                         <label for="minutes" class="form-label">設定時間</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" id="minutes" min="15" aria-describedby="basic-addon3 basic-addon4"  data-sb-validations="required" value="30">
+                                            <input type="number" class="form-control" id="minutes" min="15" aria-describedby="basic-addon3 basic-addon4" data-sb-validations="required" value="30" onclick="initializeProposedDatetime()">
                                             <span class="input-group-text" id="basic-addon3">分</span>
                                             <div class="invalid-feedback" data-sb-feedback="minutes:required">Minutes is required.</div>
                                         </div>
