@@ -4,6 +4,8 @@
             const inputDate = document.getElementById(id);
     
             let date = new Date();
+            console.debug('date.getDay():', date.getDay());
+            date.setDate(date.getDate() + date.getDay() * -1);
             if (addDays > 0) {
                 date.setDate(date.getDate() + addDays);
             }
@@ -12,7 +14,7 @@
             const month = (date.getMonth() + 1).toString().padStart(2, '0');
             const day = date.getDate().toString().padStart(2, '0');
             const formattedDate = `${year}-${month}-${day}`;
-            //console.debug(`id:${id}, formattedDate:${formattedDate}`);
+            console.debug(`id:${id}, formattedDate:${formattedDate}`);
             inputDate.value = formattedDate;
         };
         // 日付項目に初期値をセット
@@ -24,15 +26,44 @@
     }
 
     function initializeProposedDatetime() {
+        // TODO google.script.run()でGASのコードをjs上で実行する
         console.debug('initializeProposedDatetime()!');
+
+        const datefrom = document.getElementById("datefrom");
+        const dateto = document.getElementById("dateto");
+
+        // 入力値を取得
+        let fromDate = new Date(datefrom.value);
+        const toDate = new Date(dateto.value);
+
+        const daysOfWeek = ['日', '月', '火', '水', '木', '金', '土'];
+        const padZero = value => {
+            return value < 10 ? `0${value}` : value;
+        };
+        const formatDate = date => {
+            const year = date.getFullYear();
+            const month = padZero(date.getMonth() + 1);
+            const day = padZero(date.getDate());
+            const dayOfWeek = daysOfWeek[date.getDay()];
+            return `${year}/${month}/${day}(${dayOfWeek})`;
+        };
+
+        // 日付の範囲内の日付をコンソールに出力
+        let dateArray = [];
+        while (fromDate <= toDate) {
+            const formattedDate = formatDate(fromDate);
+            dateArray.push(formattedDate);
+            console.log(formattedDate); // コンソールに日付を出力
+            fromDate.setDate(fromDate.getDate() + 1); // 日付を1日進める
+        }
+
+        const textarea = document.getElementById('ProposedDatetime');
+        textarea.value = dateArray.join('\n');
     }
 
     function CopyToClipboard() {
-    
         var copyTarget = document.getElementById("ProposedDatetime");
         copyTarget.select();
         document.execCommand("Copy");
-    
-        //console.debug("copied -> ", copyTarget.value);
-    }    
+    }
 </script>
