@@ -49,16 +49,17 @@
         };
 
         // 日付の範囲内の日付をコンソールに出力
-        let dateArray = [];
+        const formattedTime = '12:00～12:30';
+        let dateTimeArray = [];
         while (fromDate <= toDate) {
             const formattedDate = formatDate(fromDate);
-            dateArray.push(formattedDate);
-            console.log(formattedDate); // コンソールに日付を出力
+            dateTimeArray.push(`${formattedDate}－${formattedTime}`);
+            console.log(`${formattedDate}－${formattedTime}`);
             fromDate.setDate(fromDate.getDate() + 1); // 日付を1日進める
         }
 
         const textarea = document.getElementById('ProposedDatetime');
-        textarea.value = dateArray.join('\n');
+        textarea.value = dateTimeArray.join('\n');
     }
 
     function CopyToClipboard() {
